@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
-import { cn } from "@/lib/utils";
+
+      
+import { cn } from "src/lib/Utils";          // Relative to current file          
 import { Menu, X } from "lucide-react";
 
 const navItems = [
