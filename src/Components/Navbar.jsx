@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
       
-import { cn } from "src/lib/Utils";          // Relative to current file          
+import { cn } from "@/lib/Utils";          // Relative to current file          
 import { Menu, X } from "lucide-react";
 
 const navItems = [
