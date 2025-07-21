@@ -1,8 +1,9 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState,  } from "react";
 
       
-import { cn } from "@/lib/Utils";          // Relative to current file          
+         // Relative to current file          
 import { Menu, X } from "lucide-react";
+import { cn } from "../lib/Utils";
 
 const navItems = [
     { name: "Home", href: "#hero" },
