@@ -1,182 +1,102 @@
-import { Instagram, Linkedin,Mail, MapPin,Phone, Send,Twitch,Twitter,} from "lucide-react";
-import { cn } from "../lib/Utils";
-import { useState } from "react";
-import { useToast } from "../hooks/use-toast";
-
-
+import React from 'react'
+import theme_pattern from  '../../assets/theme_pattern.svg'
+import mail_icon from '../../assets/mail_icon.svg'
+import location_icon from '../../assets/location_icon.svg'
+import call_icon from '../../assets/call_icon.svg'
 
 export const ContactSection = () => {
-  const { toast } = useToast();
-  const [isSubmitting, setIsSubmitting] = useState(false);
+    const onSubmit = async (event) => {
+    event.preventDefault();
+    const formData = new FormData(event.target);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+    formData.append("access_key", "d99b4276-e560-4cdd-af26-b004fe52e9fe");
 
-    setIsSubmitting(true);
+    const object = Object.fromEntries(formData);
+    const json = JSON.stringify(object);
 
-    setTimeout(() => {
-      toast({
-        title: "Message sent!",
-        description: "Thank you for your message. I'll get back to you soon.",
-      });
-      setIsSubmitting(false);
-    }, 1500);
+    const res = await fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json"
+      },
+      body: json
+    }).then((res) => res.json());
+
+    if (res.success) {
+      alert(res.message);
+    }
   };
-  return (
-    <section id="contact" className="py-24 px-4 relative bg-secondary/30">
-      <div className="container mx-auto max-w-5xl">
-        <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center">
-          Get In <span className="text-primary"> Touch</span>
-        </h2>
-
-        <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
-          Have a project in mind or want to collaborate? Feel free to reach out.
-          I'm always open to discussing new opportunities.
-        </p>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-          <div className="space-y-8">
-            <h3 className="text-2xl font-semibold mb-6">
-              {" "}
-              Contact Information
-            </h3>
-
-            <div className="space-y-6 justify-center">
-              <div className="flex items-start space-x-4">
-                <div className="p-3 rounded-full bg-primary/10">
-                  <Mail className="h-6 w-6 text-primary" />{" "}
+    return (
+        <div id='contact' className='py-20 px-4 md:px-8 lg:px-16 bg-gray-50'>
+            <div className="text-center mb-16">
+                  <h1 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4">Get in touch</h1>
+                  <img src={theme_pattern} alt="" className="mx-auto w-32 md:w-40"/>
+             </div>
+            <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
+                <div className="space-y-8">
+                      <h1 className="text-3xl md:text-4xl font-bold text-gray-800 mb-6">Let's talk</h1>
+                      <p className="text-lg text-gray-600 leading-relaxed">
+                         I'm currently available to take on new projects, so
+                         feel free to send me a message about anything that
+                         you want me to work on. You can contact anytime.
+                      </p>
+                      <div className="space-y-6">
+                           <div className="flex items-center space-x-4">
+                                <img src={mail_icon} alt="" className="w-6 h-6 flex-shrink-0"/>
+                                <p className="text-gray-700 text-lg">hajiraj475@gmail.com</p>
+                           </div>
+                             <div className="flex items-center space-x-4">
+                                  <img src={call_icon} alt="" className="w-6 h-6 flex-shrink-0"/>
+                                  <p className="text-gray-700 text-lg">+265995058810</p>
+                           </div>
+                             <div className="flex items-center space-x-4">
+                                  <img src={location_icon} alt="" className="w-6 h-6 flex-shrink-0"/>
+                                  <p className="text-gray-700 text-lg">Malawi</p>
+                           </div>
+                      </div>
                 </div>
-                <div>
-                  <h4 className="font-medium"> Email</h4>
-                  <a
-                    href="mailto:hajiraj475@gmail.com"
-                    className="text-muted-foreground hover:text-primary transition-colors"
-                  >
-                    hajiraj475@gmail.com
-                  </a>
+                <div className="space-y-6 bg-white p-8 rounded-lg shadow-lg">
+                      <div>
+                        <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">Your Name</label>
+                        <input 
+                          type="text" 
+                          id="name"
+                          placeholder='Enter your name' 
+                          name='name'
+                          className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200"
+                        />
+                      </div>
+                      <div>
+                        <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">Your Email</label>
+                        <input 
+                          type="email" 
+                          id="email"
+                          placeholder='Enter your email' 
+                          name='email'
+                          className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200"
+                        />
+                      </div>
+                      <div>
+                        <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">Write your message here</label>
+                        <textarea 
+                          name="message" 
+                          id="message"
+                          rows="8" 
+                          placeholder='Enter your message'
+                          className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200 resize-vertical"
+                        ></textarea>
+                      </div>
+                      <button 
+                        type='submit' 
+                        onClick={onSubmit}
+                        className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-md transition duration-200 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                      >
+                        Submit now
+                      </button>
                 </div>
-              </div>
-              <div className="flex items-start space-x-4">
-                <div className="p-3 rounded-full bg-primary/10">
-                  <Phone className="h-6 w-6 text-primary" />{" "}
-                </div>
-                <div>
-                  <h4 className="font-medium"> Phone</h4>
-                  <a
-                    href="tel:+265995058810"
-                    className="text-muted-foreground hover:text-primary transition-colors"
-                  >
-                    +265995058810
-                  </a>
-                </div>
-              </div>
-              <div className="flex items-start space-x-4">
-                <div className="p-3 rounded-full bg-primary/10">
-                  <MapPin className="h-6 w-6 text-primary" />{" "}
-                </div>
-                <div>
-                  <h4 className="font-medium"> Location</h4>
-                  <a className="text-muted-foreground hover:text-primary transition-colors">
-                    Malawi
-                  </a>
-                </div>
-              </div>
             </div>
-
-            <div className="pt-8">
-              <h4 className="font-medium mb-4"> Connect With Me</h4>
-              <div className="flex space-x-4 justify-center">
-                <a href="#" target="_blank">
-                  <Linkedin />
-                </a>
-                <a href="#" target="_blank">
-                  <Twitter />
-                </a>
-                <a href="#" target="_blank">
-                  <Instagram />
-                </a>
-                <a href="#" target="_blank">
-                  <Twitch />
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <div
-            className="bg-card p-8 rounded-lg shadow-xs"
-            onSubmit={handleSubmit}
-          >
-            <h3 className="text-2xl font-semibold mb-6"> Send a Message</h3>
-
-            <form className="space-y-6">
-              <div>
-                <label
-                  htmlFor="name"
-                  className="block text-sm font-medium mb-2"
-                >
-                  {" "}
-                  Your Name
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  required
-                  className="w-full px-4 py-3 rounded-md border border-input bg-background focus:outline-hidden foucs:ring-2 focus:ring-primary"
-                  placeholder="Hajeerah Juma..."
-                />
-              </div>
-
-              <div>
-                <label
-                  htmlFor="email"
-                  className="block text-sm font-medium mb-2"
-                >
-                  {" "}
-                  Your Email
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  required
-                  className="w-full px-4 py-3 rounded-md border border-input bg-background focus:outline-hidden foucs:ring-2 focus:ring-primary"
-                  placeholder="hajiraj@gmail.com"
-                />
-              </div>
-
-              <div>
-                <label
-                  htmlFor="message"
-                  className="block text-sm font-medium mb-2"
-                >
-                  {" "}
-                  Your Message
-                </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  required
-                  className="w-full px-4 py-3 rounded-md border border-input bg-background focus:outline-hidden foucs:ring-2 focus:ring-primary resize-none"
-                  placeholder="Hello, I'd like to talk about..."
-                />
-              </div>
-
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className={cn(
-                  "cosmic-button w-full flex items-center justify-center gap-2"
-                )}
-              >
-                {isSubmitting ? "Sending..." : "Send Message"}
-                <Send size={16} />
-              </button>
-            </form>
-          </div>
         </div>
-      </div>
-    </section>
-  );
-};
-          
+    )
+}
+
