@@ -59,7 +59,7 @@ export const ContactSection = () => {
                            </div>
                       </div>
                 </div>
-                <div className="space-y-6 bg-transparent p-8 rounded-lg shadow-lg border border-border">
+                <form onSubmit={onSubmit}className="space-y-6 bg-transparent p-8 rounded-lg shadow-lg border border-border">
                       <div>
                         <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">Your Name</label>
                         <input 
@@ -97,7 +97,7 @@ export const ContactSection = () => {
                       >
                         Submit now
                       </button>
-                </div>
+                </form>
             </div>
         </div>
     )
