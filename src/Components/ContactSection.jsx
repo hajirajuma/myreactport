@@ -92,7 +92,7 @@ export const ContactSection = () => {
                       </div>
                       <button 
                         type='submit' 
-                        onClick={onSubmit}
+                      
                         className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold py-3 px-6 rounded-md transition duration-200 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
                       >
                         Submit now
