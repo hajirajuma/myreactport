@@ -29,13 +29,17 @@ export const ContactSection = () => {
     return (
         <div id='contact' className='py-20 px-4 md:px-8 lg:px-16 bg-background'>
             <div className="text-center mb-16">
-                  <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">Get in touch</h1>
+                   <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center">
+          Get In <span className="text-primary">Touch</span>
+        </h2>
                   
              </div>
             <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
                 <div className="space-y-8">
-                      <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-6">Let's talk</h1>
-                      <p className="text-lg text-foreground/70 leading-relaxed">
+                                <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center">
+          Let's <span className="text-primary">Talk</span>
+        </h2>
+                      <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
                          I'm currently available to take on new projects, so
                          feel free to send me a message about anything that
                          you want me to work on. You can contact anytime.
@@ -55,7 +59,7 @@ export const ContactSection = () => {
                            </div>
                       </div>
                 </div>
-                <div className="space-y-6 bg-card p-8 rounded-lg shadow-lg border border-border">
+                <div className="space-y-6 bg-transparent p-8 rounded-lg shadow-lg border border-border">
                       <div>
                         <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">Your Name</label>
                         <input 
