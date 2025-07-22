@@ -26,7 +26,7 @@ export const ContactSection = () => {
     }
   };
   return (
-    <div id="contact" className="py-20 px-4 md:px-8 lg:px-16 bg-gray-50">
+    <div id="contact" className="py-20 px-4 md:px-8 lg:px-16 ">
       <div className="text-center mb-16">
         <h1 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
           Get in touch
